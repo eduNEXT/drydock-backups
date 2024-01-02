@@ -5,6 +5,8 @@ This is a tutor plugin used to easily store backups of mysql and mongodb databas
 
 This plugin assumes that the destination bucket is already created and that the credentials to access it are already configured (Works with S3 and Minio buckets indicating his endpoint url through `BACKUP_CUSTOM_STORAGE_ENDPOINT`).
 
+> **Warning:**: This plugin is only usable when [drydock](https://github.com/eduNEXT/drydock) is installed.
+
 ## Installation and activation
 
 
