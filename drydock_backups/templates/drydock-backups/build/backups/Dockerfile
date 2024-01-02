@@ -1,5 +1,10 @@
 FROM mysql:5.7-debian as base
 
+# The following command is required to prevent the following error:
+# GPG error: http://repo.mysql.com/apt/debian buster InRelease: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY B7B3B788A8D3785C
+# The solution was found here: https://askubuntu.com/questions/1497140/how-to-fix-apt-update-after-to-upgrade-the-mysql-list-file#comment2623210_1497141
+RUN gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys B7B3B788A8D3785C && rm /etc/apt/keyrings/mysql.gpg && gpg  --output /etc/apt/keyrings/mysql.gpg --export B7B3B788A8D3785C
+
 RUN apt-get update && apt-get install -y wget gnupg2
 
 RUN wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | apt-key add -
