@@ -1,5 +1,6 @@
 # Drydock-backups
 
+> **NOTE:**: This plugin was extracted from [drydock](https://github.com/eduNEXT/drydock), versions older than v1.0.0 are created to store historical information but shouldn't be used.
 
 This is a tutor plugin used to easily store backups of mysql and mongodb databases through k8s cronjobs. It backups the databases and stores them in a bucket.
 
