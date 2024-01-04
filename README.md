@@ -1,19 +1,22 @@
-Drydock-backups
-================
+# Drydock-backups
+
+> **NOTE:**: This plugin was extracted from [drydock](https://github.com/eduNEXT/drydock), versions older than v1.0.0 are created to store historical information but shouldn't be used.
 
 This is a tutor plugin used to easily store backups of mysql and mongodb databases through k8s cronjobs. It backups the databases and stores them in a bucket.
 
 This plugin assumes that the destination bucket is already created and that the credentials to access it are already configured (Works with S3 and Minio buckets indicating his endpoint url through `BACKUP_CUSTOM_STORAGE_ENDPOINT`).
 
-Installation and activation
----------------------------
+> **Warning:**: This plugin is only usable when [drydock](https://github.com/eduNEXT/drydock) is installed.
+
+## Installation and activation
+
 
 It is included with the Drydock installation, so there's no need to install it separately.
 
 You can enable it adding `drydock-backups` to the `plugins` section of the `config.yml` file.
 
-Configuration variables
------------------------
+## Configuration variables
+
 
 - **BACKUP_DOCKER_IMAGE**: The image used to run the cronjob. (default: `ednxops/shipyard-utils:v{{BACKUP_VERSION}}`)
 - **BACKUP_CRON_SCHEDULE**: Cron schedule to run the backup. (default: `0 2 * * *`)
@@ -35,10 +38,10 @@ Configuration variables
 
 You can set ups these variables in the `config.yml` file.
 
-Docker image
-------------
+## Docker image
 
-The docker image used to run the cronjob is `ednxops/shipyard-utils:v1.0.0` and it is available in `DockerHub <https://hub.docker.com/r/ednxops/shipyard-utils>`_.
+
+The docker image used to run the cronjob is `ednxops/shipyard-utils:v1.0.0` and it is available in [DockerHub](https://hub.docker.com/r/ednxops/shipyard-utils).
 
 When `drydock-backups` is installed in your manifests, you can build the Docker image using the following commands:
 
@@ -47,8 +50,8 @@ When `drydock-backups` is installed in your manifests, you can build the Docker 
     tutor images build backups
     tutor images push backups
 
-Utilities
----------
+## Utilities
+
 
 In the path `/utils` we have some utilities to help us managing the backups.
 

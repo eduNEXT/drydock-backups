@@ -13,7 +13,7 @@ def load_readme():
 def load_about():
     about = {}
     with io.open(
-        os.path.join(HERE, "drydock", "__about__.py"),
+        os.path.join(HERE, "drydock_backups", "__about__.py"),
         "rt",
         encoding="utf-8",
     ) as f:
@@ -25,25 +25,24 @@ ABOUT = load_about()
 
 
 setup(
-    name="drydock",
+    name="drydock-backups",
     version=ABOUT["__version__"],
-    url="https://github.com/edunext/drydock",
+    url="https://github.com/edunext/drydock-backups",
     project_urls={
-        "Code": "https://github.com/edunext/drydock",
-        "Issue tracker": "https://github.com/edunext/drydock/issues",
+        "Code": "https://github.com/edunext/drydock-backups",
+        "Issue tracker": "https://github.com/edunext/drydock-backups/issues",
     },
     license="AGPLv3",
     author="eduNEXT",
-    description="A Tutor plugin to manage our opinionated Open edX operations",
+    description="Drydock backups plugin for Tutor",
     long_description=load_readme(),
     packages=find_packages(exclude=["tests*"]),
     include_package_data=True,
-    python_requires=">=3.7",
-    install_requires=["tutor", "packaging"],
+    python_requires=">=3.8",
+    install_requires=["tutor"],
     entry_points={
         "tutor.plugin.v1": [
-            "drydock = drydock.plugin",
-            "drydock-backups = drydock_backups.plugin",
+            "drydock-backups = drydock_backups.plugin"
         ]
     },
     classifiers=[
@@ -52,9 +51,10 @@ setup(
         "License :: OSI Approved :: GNU Affero General Public License v3",
         "Operating System :: OS Independent",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
     ],
 )
