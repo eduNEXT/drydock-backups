@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/eduNEXT/drydock-backups/compare/v1.0.0...HEAD)
+## [Unreleased](https://github.com/eduNEXT/drydock-backups/compare/v1.1.0...HEAD)
 
 Please do not update the unreleased notes.
 
@@ -66,6 +66,18 @@ Please do not update the unreleased notes.
 #### Features
 
 - Add backups plugin
+
+## [v1.1.0](https://github.com/eduNEXT/drydock-backups/compare/v1.0.0...v1.1.0) - 2024-01-16
+
+### [1.1.0](https://github.com/eduNEXT/drydock-backups/compare/v1.0.0...v1.1.0) (2024-01-16)
+
+#### Features
+
+- add the mongo backup user to the initialization job ([#4](https://github.com/eduNEXT/drydock-backups/issues/4)) ([28400a1](https://github.com/eduNEXT/drydock-backups/commit/28400a11ef7c127d8dea4e466216553666249f8d))
+
+#### Build Systems
+
+- use correct readme file in setup.py ([#3](https://github.com/eduNEXT/drydock-backups/issues/3)) ([dcd284e](https://github.com/eduNEXT/drydock-backups/commit/dcd284e196823cb72b9ea09999da493e36b8df73))
 
 ## [v1.0.0](https://github.com/eduNEXT/drydock-backups/compare/v0.4.1...v1.0.0) - 2024-01-04
 
