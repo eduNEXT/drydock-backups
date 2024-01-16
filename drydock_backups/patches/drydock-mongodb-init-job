@@ -1,12 +1,12 @@
 if (db.getUser("{{ BACKUP_MONGO_USERNAME }}") == null) {
-  db.createUser({
-      user: "{{ BACKUP_MONGO_USERNAME }}",
-      pwd:  "{{ BACKUP_MONGO_PASSWORD }}",   
-      roles: [ "backup" ],
-  })
-} else {
-  db.updateUser("{{ BACKUP_MONGO_USERNAME }}", {
-    pwd: "{{ BACKUP_MONGO_PASSWORD }}",
-    roles: [  "backup" ],
-  })
-}
+            db.createUser({
+                user: "{{ BACKUP_MONGO_USERNAME }}",
+                pwd:  "{{ BACKUP_MONGO_PASSWORD }}",
+                roles: [ "backup" ],
+            })
+          } else {
+            db.updateUser("{{ BACKUP_MONGO_USERNAME }}", {
+              pwd: "{{ BACKUP_MONGO_PASSWORD }}",
+              roles: [  "backup" ],
+            })
+          }
