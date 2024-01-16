@@ -8,7 +8,7 @@ import click
 import pkg_resources
 from tutor import hooks
 
-from drydock.__about__ import __version__
+from drydock_backups.__about__ import __version__
 
 config = {
     "defaults": {
