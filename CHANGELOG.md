@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/eduNEXT/drydock-backups/compare/v1.1.0...HEAD)
+## [Unreleased](https://github.com/eduNEXT/drydock-backups/compare/v1.2.0...HEAD)
 
 Please do not update the unreleased notes.
 
@@ -66,6 +66,14 @@ Please do not update the unreleased notes.
 #### Features
 
 - Add backups plugin
+
+## [v1.2.0](https://github.com/eduNEXT/drydock-backups/compare/v1.1.0...v1.2.0) - 2024-01-17
+
+### [1.2.0](https://github.com/eduNEXT/drydock-backups/compare/v1.1.0...v1.2.0) (2024-01-17)
+
+#### Features
+
+- allow to install drydock backups as non-editable and add mysql backups init job ([#5](https://github.com/eduNEXT/drydock-backups/issues/5)) ([730ac77](https://github.com/eduNEXT/drydock-backups/commit/730ac7723526caf4c7ec7581c7071658ba768bcf))
 
 ## [v1.1.0](https://github.com/eduNEXT/drydock-backups/compare/v1.0.0...v1.1.0) - 2024-01-16
 
