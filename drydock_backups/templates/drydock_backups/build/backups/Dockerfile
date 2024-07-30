@@ -1,6 +1,6 @@
 FROM debian:bookworm-slim AS base
 
-RUN apt-get update && apt-get install -y --no-install-recommends gnupg && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y wget gnupg2 curl && rm -rf /var/lib/apt/lists/*
 
 RUN set -eux; \
 # pub   rsa4096 2023-10-23 [SC] [expires: 2025-10-22]
@@ -21,8 +21,6 @@ RUN echo 'deb [ signed-by=/etc/apt/keyrings/mysql.gpg ] http://repo.mysql.com/ap
 # GPG error: http://repo.mysql.com/apt/debian buster InRelease: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY B7B3B788A8D3785C
 # The solution was found here: https://askubuntu.com/questions/1497140/how-to-fix-apt-update-after-to-upgrade-the-mysql-list-file#comment2623210_1497141
 # RUN gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys B7B3B788A8D3785C && rm /etc/apt/keyrings/mysql.gpg && gpg  --output /etc/apt/keyrings/mysql.gpg --export B7B3B788A8D3785C
-
-RUN apt-get update && apt-get install -y wget gnupg2 curl
 
 RUN curl -fsSL https://www.mongodb.org/static/pgp/server-7.0.asc | gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg --dearmor
 
