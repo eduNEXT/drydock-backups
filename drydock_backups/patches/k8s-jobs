@@ -152,3 +152,18 @@ spec:
                       requests:
                         storage: {{ BACKUP_K8S_EPHEMERAL_VOLUME_SIZE }}
           {%- endif %}
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: mongodb-backup-job
+  labels:
+    app.kubernetes.io/component: job
+spec:
+  ttlSecondsAfterFinished: 100
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: mongodb
+        image: {{ DOCKER_IMAGE_MONGODB }}

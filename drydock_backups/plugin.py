@@ -98,4 +98,9 @@ with open(
     str(importlib_resources.files("drydock_backups") / "templates" / "drydock_backups" / "task" / "mongodb" / "init"),
     encoding="utf-8",
 ) as fi:
-
+    tutor_hooks.Filters.CLI_DO_INIT_TASKS.add_item(("mongodb-backup", fi.read()), priority=tutor_hooks.priorities.HIGH)
+with open(
+    str(importlib_resources.files("drydock_backups") / "templates" / "drydock_backups" / "task" / "mysql" / "init"),
+    encoding="utf-8",
+) as fi:
+    tutor_hooks.Filters.CLI_DO_INIT_TASKS.add_item(("mysql", fi.read()), priority=tutor_hooks.priorities.HIGH)
