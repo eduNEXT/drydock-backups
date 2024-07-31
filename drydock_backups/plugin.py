@@ -2,7 +2,7 @@ from glob import glob
 import os
 import os.path
 
-import importlib_resources
+import pkg_resources
 
 from tutor import hooks as tutor_hooks
 
@@ -80,7 +80,7 @@ tutor_hooks.Filters.IMAGES_PUSH.add_items([
 
 # Plugin templates
 tutor_hooks.Filters.ENV_TEMPLATE_ROOTS.add_item(
-    str(importlib_resources.files("drydock_backups") / "templates")
+    pkg_resources.resource_filename("drydock_backups" ,"templates")
 )
 
 tutor_hooks.Filters.ENV_TEMPLATE_TARGETS.add_items(    [
@@ -89,18 +89,32 @@ tutor_hooks.Filters.ENV_TEMPLATE_TARGETS.add_items(    [
     ],
 )
 # Load all patches from the "patches" folder
-for path in glob(str(importlib_resources.files("drydock_backups") / "patches" / "*")):
+for path in glob(
+    os.path.join(
+        pkg_resources.resource_filename("drydock_backups", "patches"),
+        "*",
+    )
+):
     with open(path, encoding="utf-8") as patch_file:
         tutor_hooks.Filters.ENV_PATCHES.add_item((os.path.basename(path), patch_file.read()))
 
 # # init script
 with open(
-    str(importlib_resources.files("drydock_backups") / "templates" / "drydock_backups" / "task" / "mongodb" / "init"),
+    pkg_resources.resource_filename("drydock_backups", "templates/drydock_backups/task/mongodb/init"),
     encoding="utf-8",
 ) as fi:
     tutor_hooks.Filters.CLI_DO_INIT_TASKS.add_item(("mongodb-backup", fi.read()), priority=tutor_hooks.priorities.HIGH)
 with open(
-    str(importlib_resources.files("drydock_backups") / "templates" / "drydock_backups" / "task" / "mysql" / "init"),
+    pkg_resources.resource_filename("drydock_backups", "templates/drydock_backups/task/mysql/init"),
     encoding="utf-8",
 ) as fi:
     tutor_hooks.Filters.CLI_DO_INIT_TASKS.add_item(("mysql", fi.read()), priority=tutor_hooks.priorities.HIGH)
+
+@tutor_hooks.Actions.PLUGIN_LOADED.add()
+def _add_minio_init(_name: str) -> None:
+    if _name == "minio":
+        with open(
+            pkg_resources.resource_filename("drydock_backups", "templates/drydock_backups/task/minio/init"),
+            encoding="utf-8",
+        ) as file:
+            tutor_hooks.Filters.CLI_DO_INIT_TASKS.add_item(("minio", file.read()), priority=tutor_hooks.priorities.HIGH)
