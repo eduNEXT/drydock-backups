@@ -30,7 +30,9 @@ You can enable it adding `drydock-backups` to the `plugins` section of the `conf
 - **BACKUP_AZURE_ACCOUNT_NAME**: Name of the account to access the container.
 - **BACKUP_AZURE_CONTAINER_SAS_TOKEN**: SAS token to access the container.
 - **BACKUP_K8S_USE_EPHEMERAL_VOLUMES**: Use ephemeral volumes to set up the cronjob. (default: `False`)
+- **BACKUP_K8S_EPHEMERAL_VOLUME_STORAGE_CLASS**: Custom StorageClass name for ephemeral volumes creation. (default: `None`)
 - **BACKUP_K8S_EPHEMERAL_VOLUME_SIZE**: Size of the ephemeral volume. (default: `8Gi`)
+- **BACKYP_MINIO_EXPIRATION_DAYS**: Number of days to setup the lifecycle policy when Minio is enabled. (default: `0`)
 - **BACKUP_MYSQL_USERNAME**: Username to access the mysql database. (default: `{{ MYSQL_ROOT_USERNAME }}`)
 - **BACKUP_MYSQL_PASSWORD**: Password to access the mysql database. (default: `{{ MYSQL_ROOT_PASSWORD }}`)
 - **BACKUP_MONGO_PASSWORD**: Password to access the mongodb database. (default: `{{ MONGODB_PASSWORD }}`)

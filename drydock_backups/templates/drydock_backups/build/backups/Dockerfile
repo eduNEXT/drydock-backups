@@ -17,18 +17,13 @@ RUN set -eux; \
 
 RUN echo 'deb [ signed-by=/etc/apt/keyrings/mysql.gpg ] http://repo.mysql.com/apt/debian/ bookworm mysql-8.4-lts' > /etc/apt/sources.list.d/mysql.list
 
-# The following command is required to prevent the following error:
-# GPG error: http://repo.mysql.com/apt/debian buster InRelease: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY B7B3B788A8D3785C
-# The solution was found here: https://askubuntu.com/questions/1497140/how-to-fix-apt-update-after-to-upgrade-the-mysql-list-file#comment2623210_1497141
-# RUN gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys B7B3B788A8D3785C && rm /etc/apt/keyrings/mysql.gpg && gpg  --output /etc/apt/keyrings/mysql.gpg --export B7B3B788A8D3785C
+RUN curl -fsSL https://www.mongodb.org/static/pgp/server-4.4.asc | gpg -o /usr/share/keyrings/mongodb-server-4.4.gpg --dearmor
 
-RUN curl -fsSL https://www.mongodb.org/static/pgp/server-7.0.asc | gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg --dearmor
-
-RUN echo "deb [ signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] http://repo.mongodb.org/apt/debian bookworm/mongodb-org/7.0 main" | tee /etc/apt/sources.list.d/mongodb-org-7.0.list
+RUN echo "deb [ signed-by=/usr/share/keyrings/mongodb-server-4.4.gpg ] http://repo.mongodb.org/apt/debian bookworm/mongodb-org/4.4 main" | tee /etc/apt/sources.list.d/mongodb-org-4.4.list
 
 RUN apt-get update && apt-get install -y \
     mysql-community-client=8.4.2-1debian12 \
-    mongodb-org \
+    mongodb-database-tools \
     awscli \
     && rm -rf /var/lib/apt/lists/*
 
