@@ -23,7 +23,9 @@ config = {
         "AZURE_ACCOUNT_NAME": "",
         "CUSTOM_STORAGE_ENDPOINT": None,
         "K8S_USE_EPHEMERAL_VOLUMES": False,
+        "K8S_EPHEMERAL_VOLUME_STORAGE_CLASS": None,
         "K8S_EPHEMERAL_VOLUME_SIZE": "8Gi",
+        "MINIO_EXPIRATION_DAYS": 0,
         "MYSQL_USERNAME": '{{ MYSQL_ROOT_USERNAME }}',
         "MYSQL_PASSWORD": '{{ MYSQL_ROOT_PASSWORD }}',
         "MONGO_PASSWORD": '{{ MONGODB_PASSWORD }}',
@@ -104,3 +106,11 @@ with open(
     encoding="utf-8",
 ) as fi:
     tutor_hooks.Filters.CLI_DO_INIT_TASKS.add_item(("mysql", fi.read()), priority=tutor_hooks.priorities.HIGH)
+
+@tutor_hooks.Actions.PLUGIN_LOADED.add()
+def _add_minio_init(_name: str) -> None:
+    with open(
+        str(importlib_resources.files("drydock_backups") / "templates" / "drydock_backups" / "task" / "minio" / "init"),
+        encoding="utf-8",
+    ) as fi:
+        tutor_hooks.Filters.CLI_DO_INIT_TASKS.add_item(("minio", fi.read()), priority=tutor_hooks.priorities.HIGH)
