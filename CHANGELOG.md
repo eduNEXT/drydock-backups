@@ -2,12 +2,15 @@
 
 
 
-## v18.0.0 (2024-07-30)
+## v16.0.0 (2024-08-02)
 
+### Chore
 
-## v17.0.0 (2024-07-30)
+* chore(release): preparing 18.0.0 ([`38a63ce`](https://github.com/eduNEXT/drydock-backups/commit/38a63ce61621249f524027e6c631a8e208780394))
 
 ### Feature
+
+* feat: palm support (#9) ([`e61465c`](https://github.com/eduNEXT/drydock-backups/commit/e61465c9216fe7c0c70216a7b5b05b79c4b52a81))
 
 * feat: upgrade to redwood (#6) ([`9452b0f`](https://github.com/eduNEXT/drydock-backups/commit/9452b0f4326aaa460f32bf7ea4f8c2d6e9d919db))
 
