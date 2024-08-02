@@ -69,8 +69,8 @@ spec:
               ephemeral:
                 volumeClaimTemplate:
                   spec:
-                    {%- if BACKUP_K8S_CUSTOM_STORAGE_CLASS %}
-                    storageClassName: {{ BACKUP_K8S_CUSTOM_STORAGE_CLASS }}
+                    {%- if BACKUP_K8S_EPHEMERAL_VOLUME_STORAGE_CLASS %}
+                    storageClassName: {{ BACKUP_K8S_EPHEMERAL_VOLUME_STORAGE_CLASS }}
                     {%- endif %}
                     accessModes:
                       - ReadWriteOnce
@@ -149,8 +149,8 @@ spec:
               ephemeral:
                 volumeClaimTemplate:
                   spec:
-                    {%- if BACKUP_K8S_CUSTOM_STORAGE_CLASS %}
-                    storageClassName: {{ BACKUP_K8S_CUSTOM_STORAGE_CLASS }}
+                    {%- if BACKUP_K8S_EPHEMERAL_VOLUME_STORAGE_CLASS %}
+                    storageClassName: {{ BACKUP_K8S_EPHEMERAL_VOLUME_STORAGE_CLASS }}
                     {%- endif %}
                     accessModes:
                       - ReadWriteOnce
