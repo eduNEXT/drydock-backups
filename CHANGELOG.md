@@ -1,18 +1,22 @@
 # CHANGELOG
 
+## v18.1.0 (2024-08-05)
 
+### Feature
+
+* feat: add minio expiration policy, custom storage class (#10) ([`7bff3fc`](https://github.com/eduNEXT/drydock-backups/commit/7bff3fcea4b1661f6c0de315608fa5eca05bd30b))
 
 ## v18.0.0 (2024-07-30)
 
+### Chore
 
-## v17.0.0 (2024-07-30)
+* chore(release): preparing 18.0.0 ([`38a63ce`](https://github.com/eduNEXT/drydock-backups/commit/38a63ce61621249f524027e6c631a8e208780394))
 
 ### Feature
 
 * feat: upgrade to redwood (#6) ([`9452b0f`](https://github.com/eduNEXT/drydock-backups/commit/9452b0f4326aaa460f32bf7ea4f8c2d6e9d919db))
 
 * feat: add pyproject, python-semantic-release and rename folder (#7) ([`fdb2896`](https://github.com/eduNEXT/drydock-backups/commit/fdb28966631f8d63fbdb7b974680c497a93a78c4))
-
 
 ## v1.2.0 (2024-01-17)
 
@@ -40,7 +44,6 @@
 
 Co-authored-by: henrrypg &lt;henrry.pulgarin@edunext.co&gt; ([`730ac77`](https://github.com/eduNEXT/drydock-backups/commit/730ac7723526caf4c7ec7581c7071658ba768bcf))
 
-
 ## v1.1.0 (2024-01-16)
 
 ### Chore
@@ -50,7 +53,6 @@ Co-authored-by: henrrypg &lt;henrry.pulgarin@edunext.co&gt; ([`730ac77`](https:/
 ### Feature
 
 * feat: add the mongo backup user to the initialization job (#4) ([`28400a1`](https://github.com/eduNEXT/drydock-backups/commit/28400a11ef7c127d8dea4e466216553666249f8d))
-
 
 ## v1.0.0 (2024-01-04)
 
@@ -64,7 +66,6 @@ BREAKING CHANGE: version v1.0.0 ([`d12a55e`](https://github.com/eduNEXT/drydock-
 
 * chore(release): preparing 1.0.0 ([`4ef8a1a`](https://github.com/eduNEXT/drydock-backups/commit/4ef8a1a99e8f96452fb288bd318588b00a2287b5))
 
-
 ## v0.4.1 (2023-12-22)
 
 ### Fix
@@ -74,7 +75,6 @@ BREAKING CHANGE: version v1.0.0 ([`d12a55e`](https://github.com/eduNEXT/drydock-
 ### Unknown
 
 * doc: update instructions for build docker image (#54) ([`1864cc7`](https://github.com/eduNEXT/drydock-backups/commit/1864cc7cfcabb7e4a1dc872cb1d56b17307ef2ba))
-
 
 ## v0.4.0 (2023-12-22)
 
@@ -93,7 +93,6 @@ BREAKING CHANGE: version v1.0.0 ([`d12a55e`](https://github.com/eduNEXT/drydock-
 * fix: update readme
 
 * fix: update gitignore for /build/ folder ([`0e3ee1b`](https://github.com/eduNEXT/drydock-backups/commit/0e3ee1baf61b42d2188712dfae38ab4d2a58bfde))
-
 
 ## v0.3.0 (2023-12-22)
 
@@ -120,7 +119,6 @@ BREAKING CHANGE: version v1.0.0 ([`d12a55e`](https://github.com/eduNEXT/drydock-
 * fix: update .sh
 
 * fix: update default shipyard-utils image ([`913fd51`](https://github.com/eduNEXT/drydock-backups/commit/913fd51af38d8e69d3b72d4d1138d68650df08d2))
-
 
 ## v0.2.0 (2023-12-22)
 
@@ -158,7 +156,6 @@ BREAKING CHANGE: version v1.0.0 ([`d12a55e`](https://github.com/eduNEXT/drydock-
 
 * fix: removing inexistent folder from github actions release flow ([`15a2b83`](https://github.com/eduNEXT/drydock-backups/commit/15a2b832edb8054d9b233c35d86a86a509d23279))
 
-
 ## v0.1.2 (2023-12-22)
 
 ### Fix
@@ -167,13 +164,11 @@ BREAKING CHANGE: version v1.0.0 ([`d12a55e`](https://github.com/eduNEXT/drydock-
 
 * fix: drydock fails in older versions to tutor palm (#43) ([`86b4765`](https://github.com/eduNEXT/drydock-backups/commit/86b47650af6e1136ebd172384ce829de2efcb6a1))
 
-
 ## v0.1.1 (2023-12-22)
 
 ### Fix
 
 * fix: mysqldump faild due mysql version (#41) ([`804b216`](https://github.com/eduNEXT/drydock-backups/commit/804b2162dbd438ed590e02035cdff2707890dc53))
-
 
 ## v0.1.0 (2023-12-22)
 
