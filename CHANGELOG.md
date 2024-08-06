@@ -1,6 +1,16 @@
 # CHANGELOG
 
+## v18.1.1 (2024-08-06)
+
+### Fix
+
+* fix: add if not exists to backup user creation ([`2dbb437`](https://github.com/eduNEXT/drydock-backups/commit/2dbb437105e64e077e02338ac93c6a3b4950ac85))
+
 ## v18.1.0 (2024-08-05)
+
+### Chore
+
+* chore(release): preparing 18.1.0 ([`7bb8816`](https://github.com/eduNEXT/drydock-backups/commit/7bb8816fde751681459739e9410ac874f3a9370f))
 
 ### Feature
 
