@@ -9,6 +9,9 @@ from tutor import hooks as tutor_hooks
 from .__about__ import __version__
 
 config = {
+    "unique": {
+        "BUCKET_HASH": "{{ 6|random_string }}",
+    },
     "defaults": {
         "VERSION": __version__,
         "DOCKER_IMAGE": "ednxops/drydock-backups:v{{BACKUP_VERSION}}",
@@ -30,11 +33,6 @@ config = {
         "MYSQL_PASSWORD": '{{ MYSQL_ROOT_PASSWORD }}',
         "MONGO_PASSWORD": '{{ MONGODB_PASSWORD }}',
         "MONGO_USERNAME": '{{ MONGODB_USERNAME }}',
-    },
-    # Add here settings that don't have a reasonable default for all users. For
-    # instance: passwords, secret keys, etc.
-    "unique": {
-        # "SECRET_KEY": "\{\{ 24|random_string \}\}",
     },
     # Danger zone! Add here values to override settings from Tutor core or other plugins.
     "overrides": {
@@ -88,6 +86,7 @@ tutor_hooks.Filters.ENV_TEMPLATE_ROOTS.add_item(
 tutor_hooks.Filters.ENV_TEMPLATE_TARGETS.add_items(    [
         ("drydock_backups/build", "plugins"),
         ("drydock_backups/apps", "plugins"),
+        ("drydock_backups/k8s", "plugins"),
     ],
 )
 # Load all patches from the "patches" folder
