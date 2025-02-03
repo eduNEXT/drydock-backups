@@ -11,7 +11,7 @@ from .__about__ import __version__
 config = {
     "defaults": {
         "VERSION": __version__,
-        "DOCKER_IMAGE": "ednxops/drydock-backups:v{{BACKUP_VERSION}}",
+        "DOCKER_IMAGE": "ednxops/drydock-backups:{{BACKUP_VERSION}}",
         "CRON_SCHEDULE": '0 2 * * *',
         "STORAGE_SERVICE": "aws-s3",
         "AWS_ACCESS_KEY": "",
