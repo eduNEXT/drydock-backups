@@ -63,6 +63,19 @@ spec:
               {%- endif %}
               args:
                 - mysql
+            - name: cleanup
+              image: bitnami/kubectl
+              command:
+                - "/bin/sh"
+                - "-c"
+                - |
+                  # wait to finished the process of the backup
+                  while ! kubectl get pod $POD_NAME -o jsonpath='{.status.containerStatuses[0].state.terminated.reason}' | grep -q "Completed"; do
+                    sleep 5
+                  done
+                  # Eliminar el PVC asociado
+                  PVC_NAME=$(kubectl get pvc -l job-name=$JOB_NAME -o jsonpath='{.items[0].metadata.name}')
+                  kubectl delete pvc $PVC_NAME
           {%- if BACKUP_K8S_USE_EPHEMERAL_VOLUMES %}
           volumes:
             - name: backup-volume
@@ -143,6 +156,19 @@ spec:
               {%- endif %}
               args:
                 - mongo
+            - name: cleanup
+              image: bitnami/kubectl
+              command:
+                - "/bin/sh"
+                - "-c"
+                - |
+                  # wait to finished the process of the backup
+                  while ! kubectl get pod $POD_NAME -o jsonpath='{.status.containerStatuses[0].state.terminated.reason}' | grep -q "Completed"; do
+                    sleep 5
+                  done
+                  # Eliminar el PVC asociado
+                  PVC_NAME=$(kubectl get pvc -l job-name=$JOB_NAME -o jsonpath='{.items[0].metadata.name}')
+                  kubectl delete pvc $PVC_NAME
           {%- if BACKUP_K8S_USE_EPHEMERAL_VOLUMES %}
           volumes:
             - name: backup-volume
