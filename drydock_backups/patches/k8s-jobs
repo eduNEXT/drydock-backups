@@ -9,8 +9,8 @@ spec:
   suspend: false
   schedule: {{ BACKUP_CRON_SCHEDULE }}
   startingDeadlineSeconds: 900
-  successfulJobsHistoryLimit: 3
-  failedJobsHistoryLimit: 3
+  successfulJobsHistoryLimit: 0
+  failedJobsHistoryLimit: 0
   jobTemplate:
     spec:
       template:
@@ -89,8 +89,8 @@ spec:
   suspend: false
   schedule: {{ BACKUP_CRON_SCHEDULE }}
   startingDeadlineSeconds: 900
-  successfulJobsHistoryLimit: 3
-  failedJobsHistoryLimit: 3
+  successfulJobsHistoryLimit: 0
+  failedJobsHistoryLimit: 0
   jobTemplate:
     spec:
       template:
