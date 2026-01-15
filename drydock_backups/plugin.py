@@ -26,6 +26,7 @@ config = {
         "K8S_EPHEMERAL_VOLUME_STORAGE_CLASS": None,
         "K8S_EPHEMERAL_VOLUME_SIZE": "8Gi",
         "MINIO_EXPIRATION_DAYS": 0,
+        "MINIO_ENABLED": False,
         "MYSQL_USERNAME": '{{ MYSQL_ROOT_USERNAME }}',
         "MYSQL_PASSWORD": '{{ MYSQL_ROOT_PASSWORD }}',
         "MONGO_PASSWORD": '{{ MONGODB_PASSWORD }}',
@@ -107,10 +108,12 @@ with open(
 ) as fi:
     tutor_hooks.Filters.CLI_DO_INIT_TASKS.add_item(("mysql", fi.read()), priority=tutor_hooks.priorities.HIGH)
 
-@tutor_hooks.Actions.PLUGIN_LOADED.add()
-def _add_minio_init(_name: str) -> None:
-    with open(
-        str(importlib_resources.files("drydock_backups") / "templates" / "drydock_backups" / "task" / "minio" / "init"),
-        encoding="utf-8",
-    ) as fi:
-        tutor_hooks.Filters.CLI_DO_INIT_TASKS.add_item(("minio", fi.read()), priority=tutor_hooks.priorities.HIGH)
+@tutor_hooks.Filters.CONFIG_READY.add()
+def _add_minio_init_if_needed(config: dict) -> dict:
+    if config.get("BACKUP_MINIO_ENABLED"):
+        with open(
+            str(importlib_resources.files("drydock_backups") / "templates" / "drydock_backups" / "task" / "minio" / "init"),
+            encoding="utf-8",
+        ) as fi:
+            tutor_hooks.Filters.CLI_DO_INIT_TASKS.add_item(("minio", fi.read()), priority=tutor_hooks.priorities.HIGH)
+    return config
