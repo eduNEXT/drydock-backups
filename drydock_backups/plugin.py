@@ -109,8 +109,8 @@ with open(
     tutor_hooks.Filters.CLI_DO_INIT_TASKS.add_item(("mysql", fi.read()), priority=tutor_hooks.priorities.HIGH)
 
 @tutor_hooks.Filters.CONFIG_READY.add()
-def _add_minio_init_if_needed(config: dict) -> dict:
-    if config.get("BACKUP_MINIO_ENABLED"):
+def _add_minio_init_if_needed(_name: str) -> None:
+    if _name == "minio":
         with open(
             str(importlib_resources.files("drydock_backups") / "templates" / "drydock_backups" / "task" / "minio" / "init"),
             encoding="utf-8",
