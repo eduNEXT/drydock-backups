@@ -115,4 +115,3 @@ def _add_minio_init_if_needed(_name: str) -> None:
             encoding="utf-8",
         ) as fi:
             tutor_hooks.Filters.CLI_DO_INIT_TASKS.add_item(("minio", fi.read()), priority=tutor_hooks.priorities.HIGH)
-    return config
