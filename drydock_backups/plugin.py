@@ -107,7 +107,6 @@ with open(
 ) as fi:
     tutor_hooks.Filters.CLI_DO_INIT_TASKS.add_item(("mysql", fi.read()), priority=tutor_hooks.priorities.HIGH)
 
-@tutor_hooks.Actions.PLUGINS_LOADED.add()
 @tutor_hooks.Filters.PLUGINS_LOADED.add()
 def _add_minio_init(_list_name:list[str]) -> None:
     if "minio" in _list_name:
