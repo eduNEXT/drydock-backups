@@ -107,9 +107,10 @@ with open(
 ) as fi:
     tutor_hooks.Filters.CLI_DO_INIT_TASKS.add_item(("mysql", fi.read()), priority=tutor_hooks.priorities.HIGH)
 
-@tutor_hooks.Actions.PLUGIN_LOADED.add()
-def _add_minio_init_if_needed(_name: str) -> None:
-    if _name == "minio":
+@tutor_hooks.Actions.PLUGINS_LOADED.add()
+@tutor_hooks.Filters.PLUGINS_LOADED.add()
+def _add_minio_init(_list_name:list[str]) -> None:
+    if "minio" in _list_name:
         with open(
             str(importlib_resources.files("drydock_backups") / "templates" / "drydock_backups" / "task" / "minio" / "init"),
             encoding="utf-8",
