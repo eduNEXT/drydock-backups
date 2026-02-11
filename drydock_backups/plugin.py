@@ -1,9 +1,8 @@
-from glob import glob
 import os
 import os.path
+from glob import glob
 
 import importlib_resources
-
 from tutor import hooks as tutor_hooks
 
 from .__about__ import __version__
@@ -12,7 +11,7 @@ config = {
     "defaults": {
         "VERSION": __version__,
         "DOCKER_IMAGE": "ednxops/drydock-backups:{{BACKUP_VERSION}}",
-        "CRON_SCHEDULE": '0 2 * * *',
+        "CRON_SCHEDULE": "0 2 * * *",
         "STORAGE_SERVICE": "aws-s3",
         "AWS_ACCESS_KEY": "",
         "AWS_SECRET_KEY": "",
@@ -26,10 +25,10 @@ config = {
         "K8S_EPHEMERAL_VOLUME_STORAGE_CLASS": None,
         "K8S_EPHEMERAL_VOLUME_SIZE": "8Gi",
         "MINIO_EXPIRATION_DAYS": 0,
-        "MYSQL_USERNAME": '{{ MYSQL_ROOT_USERNAME }}',
-        "MYSQL_PASSWORD": '{{ MYSQL_ROOT_PASSWORD }}',
-        "MONGO_PASSWORD": '{{ MONGODB_PASSWORD }}',
-        "MONGO_USERNAME": '{{ MONGODB_USERNAME }}',
+        "MYSQL_USERNAME": "{{ MYSQL_ROOT_USERNAME }}",
+        "MYSQL_PASSWORD": "{{ MYSQL_ROOT_PASSWORD }}",
+        "MONGO_PASSWORD": "{{ MONGODB_PASSWORD }}",
+        "MONGO_USERNAME": "{{ MONGODB_USERNAME }}",
     },
     # Add here settings that don't have a reasonable default for all users. For
     # instance: passwords, secret keys, etc.
@@ -37,55 +36,49 @@ config = {
         # "SECRET_KEY": "\{\{ 24|random_string \}\}",
     },
     # Danger zone! Add here values to override settings from Tutor core or other plugins.
-    "overrides": {
-    },
+    "overrides": {},
 }
 
-tutor_hooks.Filters.CONFIG_DEFAULTS.add_items(
-    [
-        (f"BACKUP_{key}", value)
-        for key, value in config["defaults"].items()
-    ]
-)
+tutor_hooks.Filters.CONFIG_DEFAULTS.add_items([(f"BACKUP_{key}", value) for key, value in config["defaults"].items()])
 
-tutor_hooks.Filters.CONFIG_UNIQUE.add_items(
-    [
-        (f"BACKUP_{key}", value)
-        for key, value in config["unique"].items()
-    ]
-)
+tutor_hooks.Filters.CONFIG_UNIQUE.add_items([(f"BACKUP_{key}", value) for key, value in config["unique"].items()])
 
 tutor_hooks.Filters.CONFIG_OVERRIDES.add_items(list(config["overrides"].items()))
 
-tutor_hooks.Filters.IMAGES_BUILD.add_items([
-    (
-        "backups",
-        ("plugins", "drydock_backups", "build", "backups"),
-        "{{BACKUP_DOCKER_IMAGE}}",
-        (),
-    )
-])
-
-tutor_hooks.Filters.IMAGES_PULL.add_items([
-    (
-        "backups",
-        "{{BACKUP_DOCKER_IMAGE}}",
-    )
-])
-
-tutor_hooks.Filters.IMAGES_PUSH.add_items([
-    (
-        "backups",
-        "{{BACKUP_DOCKER_IMAGE}}",
-    )
-])
-
-# Plugin templates
-tutor_hooks.Filters.ENV_TEMPLATE_ROOTS.add_item(
-    str(importlib_resources.files("drydock_backups") / "templates")
+tutor_hooks.Filters.IMAGES_BUILD.add_items(
+    [
+        (
+            "backups",
+            ("plugins", "drydock_backups", "build", "backups"),
+            "{{BACKUP_DOCKER_IMAGE}}",
+            (),
+        )
+    ]
 )
 
-tutor_hooks.Filters.ENV_TEMPLATE_TARGETS.add_items(    [
+tutor_hooks.Filters.IMAGES_PULL.add_items(
+    [
+        (
+            "backups",
+            "{{BACKUP_DOCKER_IMAGE}}",
+        )
+    ]
+)
+
+tutor_hooks.Filters.IMAGES_PUSH.add_items(
+    [
+        (
+            "backups",
+            "{{BACKUP_DOCKER_IMAGE}}",
+        )
+    ]
+)
+
+# Plugin templates
+tutor_hooks.Filters.ENV_TEMPLATE_ROOTS.add_item(str(importlib_resources.files("drydock_backups") / "templates"))
+
+tutor_hooks.Filters.ENV_TEMPLATE_TARGETS.add_items(
+    [
         ("drydock_backups/build", "plugins"),
         ("drydock_backups/apps", "plugins"),
     ],
@@ -107,12 +100,20 @@ with open(
 ) as fi:
     tutor_hooks.Filters.CLI_DO_INIT_TASKS.add_item(("mysql", fi.read()), priority=tutor_hooks.priorities.HIGH)
 
+
 @tutor_hooks.Actions.PLUGINS_LOADED.add()
 def _add_minio_init() -> None:
     _plugins_list = tutor_hooks.Filters.PLUGINS_LOADED.apply([])
     if "minio" in _plugins_list:
         with open(
-            str(importlib_resources.files("drydock_backups") / "templates" / "drydock_backups" / "task" / "minio" / "init"),
+            str(
+                importlib_resources.files("drydock_backups")
+                / "templates"
+                / "drydock_backups"
+                / "task"
+                / "minio"
+                / "init"
+            ),
             encoding="utf-8",
         ) as fi:
             tutor_hooks.Filters.CLI_DO_INIT_TASKS.add_item(("minio", fi.read()), priority=tutor_hooks.priorities.HIGH)

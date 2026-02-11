@@ -1,6 +1,30 @@
 # CHANGELOG
 
+<!--
+All enhancements and changes will be documented in this file.  It adheres to
+the structure of http://keepachangelog.com/ ,
 
+This project adheres to Semantic Versioning (http://semver.org/).
+-->
+
+## Unreleased
+
+See the fragment files in the [changelog.d/ directory](./changelog.d).
+
+<!-- scriv-insert-here -->
+
+<a id='changelog-19.0.1'></a>
+## 19.0.1 — 2026-02-13
+
+### Fixed
+
+- Properly check if the MinIO plugin is enabled before adding the initialization
+  jobs.
+- Don't override the MongoDB user role in case `BACKUP_MONGO_USERNAME` is an
+  existing user.
+- Reduce the job history limit to 0 to avoid dangling Pods and PVCs.
+
+<a id='changelog-19.0.0'></a>
 ## v19.0.0 (2025-02-03)
 
 ### Continuous Integration
