@@ -92,3 +92,6 @@ jobs:
     uses: ./.github/workflows/docker.yml
     with:
       push: true
+    secrets:
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
