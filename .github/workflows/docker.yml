@@ -5,6 +5,12 @@ on:
     branches:
       - main
   workflow_call:
+    inputs:
+      push:
+        description: 'Push image to registry'
+        required: false
+        type: boolean
+        default: false
 
 env:
   REGISTRY: docker.io
@@ -49,6 +55,6 @@ jobs:
           uv run tutor images build backups
 
       - name: Push Docker image
-        if: github.event_name == 'workflow_dispatch'
+        if: inputs.push
         run: |
             uv run tutor images push backups
