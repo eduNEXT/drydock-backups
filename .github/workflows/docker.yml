@@ -11,6 +11,11 @@ on:
         required: false
         type: boolean
         default: false
+    secrets:
+      DOCKERHUB_USERNAME:
+        required: true
+      DOCKERHUB_PASSWORD:
+        required: true
 
 env:
   REGISTRY: docker.io
