@@ -13,6 +13,13 @@ See the fragment files in the [changelog.d/ directory](./changelog.d).
 
 <!-- scriv-insert-here -->
 
+<a id='changelog-20.0.0'></a>
+## 20.0.0 — 2026-02-13
+
+### Added
+
+- Support the Teak release.
+
 <a id='changelog-19.0.1'></a>
 ## 19.0.1 — 2026-02-13
 
