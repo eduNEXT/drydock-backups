@@ -1,6 +1,6 @@
 [project]
 name = "drydock-backups"
-version = "19.0.1"
+version = "20.0.0"
 description = "Drydock backups plugin for Tutor"
 readme = "README.md"
 authors = [
@@ -22,7 +22,7 @@ classifiers = [
 requires-python = ">=3.9"
 
 dependencies = [
-    "tutor~=19.0"
+    "tutor~=20.0"
 ]
 
 [project.urls]
