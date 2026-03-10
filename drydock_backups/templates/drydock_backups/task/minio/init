@@ -1,5 +1,9 @@
 mc config host add minio http://minio:9000 {{ OPENEDX_AWS_ACCESS_KEY }} {{ OPENEDX_AWS_SECRET_ACCESS_KEY }} --api s3v4
 mc mb --ignore-existing minio/{{ BACKUP_BUCKET_NAME }}
 {%- if BACKUP_MINIO_EXPIRATION_DAYS > 0 %}
+# Validated if already exists expiration rule in backup bucket
+if ! mc ilm ls minio/{{ BACKUP_BUCKET_NAME }} | grep -q "Expiration"; then
+# Add expiration rule if it doesn't exist
 mc ilm add --expiry-days "{{ BACKUP_MINIO_EXPIRATION_DAYS }}" minio/{{ BACKUP_BUCKET_NAME }}
+fi
 {%- endif %}
